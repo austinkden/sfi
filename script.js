@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function storeInfo() {
-    const flightNumber = document.getElementById('fln').value.toUpperCase().padStart(7, '△');
+    let flightNumber = document.getElementById('fln').value.toUpperCase();
     const registration = document.getElementById('reg').value.toUpperCase().padStart(6, '△');
     const aircraftType = document.getElementById('type').value.toUpperCase().padStart(4, '△');
     const date = document.getElementById('date').value;
@@ -23,6 +23,24 @@ function storeInfo() {
         year: 'numeric'
     }).replace(/\//g, '');
 
+    // Handle special cases for flight number abbreviation
+    const prefixes = {
+        'UAL': 'U',
+        'SWA': 'S',
+        'AAL': 'A',
+        'DAL': 'D',
+        'FFT': 'F'
+    };
+
+    for (const prefix in prefixes) {
+        if (flightNumber.startsWith(prefix)) {
+            flightNumber = prefixes[prefix] + flightNumber.slice(3);
+            break;
+        }
+    }
+
+    flightNumber = flightNumber.padStart(7, '△');
+
     const info = `${flightNumber}/${registration}/${aircraftType}/${formattedDate}/${status}`;
 
     document.getElementById('result').innerText = info.toUpperCase();
@@ -37,11 +55,25 @@ function decodeInfo() {
         return;
     }
 
-    const flightNumber = parts[0].replace(/△/g, '');
+    let flightNumber = parts[0].replace(/△/g, '');
     const registration = parts[1].replace(/△/g, '');
     const type = parts[2].replace(/△/g, '');
     const date = parts[3];
     const status = parts[4] === 'P' ? 'PHOTOGRAPHED' : 'SPOTTED';
+
+    // Handle special cases for flight number abbreviation
+    const prefixes = {
+        'U': 'UAL',
+        'S': 'SWA',
+        'A': 'AAL',
+        'D': 'DAL',
+        'F': 'FFT'
+    };
+
+    const firstChar = flightNumber.charAt(0);
+    if (prefixes[firstChar]) {
+        flightNumber = prefixes[firstChar] + flightNumber.slice(1);
+    }
 
     // Format date to MM/DD/YYYY
     const formattedDate = `${date.slice(0, 2)}/${date.slice(2, 4)}/${date.slice(4)}`;
