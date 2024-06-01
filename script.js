@@ -7,8 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function storeInfo() {
     let flightNumber = document.getElementById('fln').value.toUpperCase();
-    const registration = document.getElementById('reg').value.toUpperCase().padStart(6, '△');
-    const aircraftType = document.getElementById('type').value.toUpperCase().padStart(4, '△');
+    const registration = document.getElementById('reg').value.toUpperCase();
+    const aircraftType = document.getElementById('type').value.toUpperCase();
     const date = document.getElementById('date').value;
     const status = document.getElementById('status').value;
 
@@ -39,11 +39,9 @@ function storeInfo() {
         }
     }
 
-    flightNumber = flightNumber.padStart(7, '△');
-
     const info = `${flightNumber}/${registration}/${aircraftType}/${formattedDate}/${status}`;
 
-    document.getElementById('result').innerText = info.toUpperCase();
+    document.getElementById('result').innerText = info;
 }
 
 function decodeInfo() {
@@ -55,9 +53,9 @@ function decodeInfo() {
         return;
     }
 
-    let flightNumber = parts[0].replace(/△/g, '');
-    const registration = parts[1].replace(/△/g, '');
-    const type = parts[2].replace(/△/g, '');
+    let flightNumber = parts[0];
+    const registration = parts[1];
+    const type = parts[2];
     const date = parts[3];
     const status = parts[4] === 'P' ? 'PHOTOGRAPHED' : 'SPOTTED';
 
