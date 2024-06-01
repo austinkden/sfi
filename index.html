@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Info Encoder/Decoder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="section">
+            <h2>Encoder</h2>
+            <div class="encoder">
+                <input type="text" id="fln" placeholder="FLIGHT NUMBER" maxlength="7" required>
+                <input type="text" id="reg" placeholder="AIRCRAFT REGISTRATION" maxlength="6" required>
+                <input type="text" id="type" placeholder="AIRCRAFT TYPE" maxlength="4" required>
+                <input type="date" id="date" required>
+                <select id="status" required>
+                    <option value="" disabled selected>SELECT STATUS</option>
+                    <option value="P">PHOTOGRAPHED</option>
+                    <option value="S">SPOTTED</option>
+                </select>
+                <button onclick="storeInfo()">Encode</button>
+                <div id="result"></div>
+            </div>
+        </div>
+        <div class="section">
+            <h2>Decoder</h2>
+            <div class="decoder">
+                <input type="text" id="encodedString" placeholder="Enter Encoded String" required>
+                <button onclick="decodeInfo()">Decode</button>
+                <div id="decodedResult">
+                    <p>Flight Number: <span id="decodedFlightNumber"></span></p>
+                    <p>Aircraft Registration: <span id="decodedRegistration"></span></p>
+                    <p>Aircraft Type: <span id="decodedType"></span></p>
+                    <p>Date: <span id="decodedDate"></span></p>
+                    <p>Status: <span id="decodedStatus"></span></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
