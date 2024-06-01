@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flight Info Decoder</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+            <input type="text" id="encodedString" placeholder="Enter Encoded String" required>
+            <button onclick="decodeInfo()">Decode</button>
+        </div>
+        <div id="decodedResult">
+            <p>FLIGHT NUMBER: <span id="decodedFlightNumber"></span></p>
+            <p>REGISTRATION: <span id="decodedRegistration"></span></p>
+            <p>TYPE: <span id="decodedType"></span></p>
+            <p>DATE: <span id="decodedDate"></span></p>
+            <p>STATUS: <span id="decodedStatus"></span></p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
