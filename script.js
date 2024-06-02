@@ -29,7 +29,8 @@ function storeInfo() {
         'SWA': 'S',
         'AAL': 'A',
         'DAL': 'D',
-        'FFT': 'F'
+        'FFT': 'F',
+        'SKW': 'K'
     };
 
     for (const prefix in prefixes) {
@@ -65,7 +66,8 @@ function decodeInfo() {
         'S': 'SWA',
         'A': 'AAL',
         'D': 'DAL',
-        'F': 'FFT'
+        'F': 'FFT',
+        'K': 'SKW'
     };
 
     const firstChar = flightNumber.charAt(0);
